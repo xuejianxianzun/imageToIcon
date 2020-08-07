@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片转换为 icon 图标</title>
+  <link rel="stylesheet" href="./css.css">
+</head>
+<body>
+  <h1>图片转换为 icon 图标</h1>
+  <form id="form">
+    <div class='formLine'>
+      <span class="l">文件:</span>
+      <div class="r file-r">
+        <p>选择一个文件: <input type="file" name='file' accept="image/jpeg;image/gif;image/png;image/bmp;image/webp;"></p>
+        <p>或者</p>
+        <p>输入一个网址: <input type="text" name="url"></p>
+      </div>
+    </div>
+    <div class='formLine'>
+      <span class="l">尺寸:</span>
+      <div class="r">
+        <p>
+          <input type="checkBox" name="size" value="16" checked>16x16
+          <input type="checkBox" name="size" value="32">32x32
+          <input type="checkBox" name="size" value="48">48x48
+          <input type="checkBox" name="size" value="96" checked>96x96
+          <input type="checkBox" name="size" value="128">128x128
+          <input type="checkBox" name="size" value="256" checked>256x256
+          <input type="checkBox" name="size" value="512">512x512
+        </p>
+      </div>
+    </div>
+    <div class='formLine'>
+      <span class="l">形状:</span>
+      <div class="r">
+        <p>
+          <input type="radio" name="shape" value="square" checked>正方形
+          <input type="radio" name="shape" value="circle">圆形
+          <input type="radio" name="shape" value="fillet">圆角矩形
+        </p>
+      </div>
+    </div>
+    <div class='formLine'>
+      <span class="l">留白:</span>
+      <div class="r">
+        <p>
+          <input type="checkBox" name="bleed" value="bleed" checked> 启用（此选项只在形状为“圆角矩形”时生效）
+        </p>
+      </div>
+    </div>
+    <div class='formLine butotn-p'>
+      <button id="b" type="submit">转换</button>
+    </div>
+  </form>
+
+  
+</body>
+
+<script type="module">
+  import {img2ico} from '../imageToIcon.js'
+  const f = document.querySelector('#form')
+  const btn = f.querySelector('#b')
+
+  f.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    check()
+  })
+
+  function check(){
+    if(f.file.files.length ===0 && f.url.value===''){
+      throw new Error('File is undefined')
+    }
+    
+    convert()
+  }
+
+  async function convert(){
+    let source
+    if(f.file.files.length>0){
+      source= f.file.files[0]
+    }else{
+      source=f.url.value
+    }
+
+    let size = []
+    for (const i of f.size) {
+      if(i.checked){
+        size.push(parseInt(i.value))
+      }
+    }
+
+    let shape = f.shape.value
+    let bleed = f.bleed.checked
+
+    const arg = {
+      source,
+      size,
+      shape,
+      bleed,
+    }
+    const blob = await img2ico.convert(arg)
+
+    download(blob)
+  }
+
+  function download(blob){
+    const a = document.createElement('a')
+    a.download = new Date().getTime() + '.ico'
+    a.href= URL.createObjectURL(blob)
+    a.click()
+  }
+
+</script>
+
+</html>

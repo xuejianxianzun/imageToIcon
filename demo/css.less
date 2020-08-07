@@ -1,0 +1,45 @@
+@blue:rgb(0, 135, 245);
+
+h1 {
+  text-align: center;
+  color: @blue;
+}
+
+#form {
+  margin: 0 auto;
+  max-width: 650px;
+  line-height: 1.5;
+
+  .formLine {
+    display: flex;
+    margin:10px 0;
+
+    .l {
+      display: inline-flex;
+      color: @blue;
+      min-width: 60px;
+    }
+
+    .r {
+      display: inline-flex;
+      color: #555;
+    }
+
+    .file-r {
+      flex-direction: column;
+    }
+  }
+  .butotn-p{
+    justify-content: center;
+    button{
+      padding:6px 10px;
+      background-color: @blue;
+      color: #fff;
+      font-size: 1.3em;
+      text-align: center;
+      border:none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}

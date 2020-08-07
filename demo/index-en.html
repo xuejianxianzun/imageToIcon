@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to Icon Converter</title>
+  <link rel="stylesheet" href="./css.css">
+</head>
+<body>
+  <h1>Image to Icon Converter</h1>
+  <form id="form">
+    <div class='formLine'>
+      <span class="l">File:</span>
+      <div class="r file-r">
+        <p>Select a file: <input type="file" name='file' accept="image/jpeg;image/gif;image/png;image/bmp;image/webp;"></p>
+        <p>or</p>
+        <p>Input a URL: <input type="text" name="url"></p>
+      </div>
+    </div>
+    <div class='formLine'>
+      <span class="l">Size:</span>
+      <div class="r">
+        <p>
+          <input type="checkBox" name="size" value="16" checked>16x16
+          <input type="checkBox" name="size" value="32">32x32
+          <input type="checkBox" name="size" value="48">48x48
+          <input type="checkBox" name="size" value="96" checked>96x96
+          <input type="checkBox" name="size" value="128">128x128
+          <input type="checkBox" name="size" value="256" checked>256x256
+          <input type="checkBox" name="size" value="512">512x512
+        </p>
+      </div>
+    </div>
+    <div class='formLine'>
+      <span class="l">Shape:</span>
+      <div class="r">
+        <p>
+          <input type="radio" name="shape" value="square" checked>square
+          <input type="radio" name="shape" value="circle">circle
+          <input type="radio" name="shape" value="fillet">rounded square
+        </p>
+      </div>
+    </div>
+    <div class='formLine'>
+      <span class="l">Blank-leaving:</span>
+      <div class="r">
+        <p>
+          <input type="checkBox" name="bleed" value="bleed" checked> enable (only works when the shape is rounded square)
+        </p>
+      </div>
+    </div>
+    <div class='formLine butotn-p'>
+      <button id="b" type="submit">Convert</button>
+    </div>
+  </form>
+
+  
+</body>
+
+<script type="module">
+  import {img2ico} from '../imageToIcon.js'
+  const f = document.querySelector('#form')
+  const btn = f.querySelector('#b')
+
+  f.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    check()
+  })
+
+  function check(){
+    if(f.file.files.length ===0 && f.url.value===''){
+      throw new Error('File is undefined')
+    }
+    
+    convert()
+  }
+
+  async function convert(){
+    let source
+    if(f.file.files.length>0){
+      source= f.file.files[0]
+    }else{
+      source=f.url.value
+    }
+
+    let size = []
+    for (const i of f.size) {
+      if(i.checked){
+        size.push(parseInt(i.value))
+      }
+    }
+
+    let shape = f.shape.value
+    let bleed = f.bleed.checked
+
+    const arg = {
+      source,
+      size,
+      shape,
+      bleed,
+    }
+    const blob = await img2ico.convert(arg)
+
+    download(blob)
+  }
+
+  function download(blob){
+    const a = document.createElement('a')
+    a.download = new Date().getTime() + '.ico'
+    a.href= URL.createObjectURL(blob)
+    a.click()
+  }
+
+</script>
+
+</html>

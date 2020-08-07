@@ -1,0 +1,38 @@
+h1 {
+  text-align: center;
+  color: #0087f5;
+}
+#form {
+  margin: 0 auto;
+  max-width: 650px;
+  line-height: 1.5;
+}
+#form .formLine {
+  display: flex;
+  margin: 10px 0;
+}
+#form .formLine .l {
+  display: inline-flex;
+  color: #0087f5;
+  min-width: 60px;
+}
+#form .formLine .r {
+  display: inline-flex;
+  color: #555;
+}
+#form .formLine .file-r {
+  flex-direction: column;
+}
+#form .butotn-p {
+  justify-content: center;
+}
+#form .butotn-p button {
+  padding: 6px 10px;
+  background-color: #0087f5;
+  color: #fff;
+  font-size: 1.3em;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
