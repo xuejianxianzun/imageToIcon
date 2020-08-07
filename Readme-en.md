@@ -1,3 +1,6 @@
+[简体中文](./Readme.md)
+[English](./Readme-en.md)
+
 # Introduction
 
 This is a tool for converting image into icon files, written in JavaScript.

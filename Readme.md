@@ -1,3 +1,6 @@
+[English](./Readme-en.md)
+[简体中文](./Readme.md)
+
 # 介绍
 
 这是一个把图片转换成 icon 文件的工具，使用 JavaScript 编写。
