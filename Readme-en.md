@@ -1,5 +1,4 @@
-[简体中文](./Readme.md)
-[English](./Readme-en.md)
+[简体中文](./Readme.md) | [English](./Readme-en.md)
 
 # Introduction
 
