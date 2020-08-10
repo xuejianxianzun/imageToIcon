@@ -2,9 +2,11 @@
 
 # Introduction
 
-This is a tool for converting image into icon files, written in JavaScript.
+This is a tool for converting image into icon files, which can be directly converted locally without uploading image to a remote server.
 
-Direct conversion locally, no need to upload image to a remote server.
+It is written in JavaScript and is suitable for use in a browser. Need to run in http(s) protocol. The local file protocol (file) cannot be used.
+
+[Online use](https://icon.pixiv.download/index-en.html)
 
 # Effect
 
@@ -12,9 +14,9 @@ Direct conversion locally, no need to upload image to a remote server.
 
 # Instructions
 
-1. Include `imageToIcon.js`.
+1. Include `imageToIcon.js` or `imageToIcon.ts`.
 
->`imageToIcon.js` is a module that exports `{ img2ico }`.
+>`imageToIcon.js/ts` is a ES 6 module that exports `{ img2ico }`.
 
 2. Use `img2ico.convert()` to convert.
 

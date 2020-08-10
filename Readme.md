@@ -2,9 +2,11 @@
 
 # 介绍
 
-这是一个把图片转换成 icon 文件的工具，使用 JavaScript 编写。
+这是一个把图片转换成 icon 文件的工具，在本地直接转换，无需将图片上传到远程服务器。
 
-在本地直接转换，无需将图片上传到远程服务器。
+它使用 JavaScript 编写，适合在浏览器中使用。需要运行在 http(s) 协议中。不可以使用本地文件协议(file)。
+
+[在线使用](https://icon.pixiv.download/)
 
 # 效果
 
@@ -12,9 +14,9 @@
 
 # 使用方法
 
-1. 引入 `imageToIcon.js` 。
+1. 引入 `imageToIcon.js` 或 `imageToIcon.ts` 。
 
->`imageToIcon.js` 是一个模块，导出 `{ img2ico }`。
+>`imageToIcon.js/ts` 是一个 ES6 模块，导出 `{ img2ico }`。
 
 2. 使用 `img2ico.convert()` 进行转换。
 
