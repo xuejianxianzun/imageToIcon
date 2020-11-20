@@ -4,7 +4,7 @@
 
 这是一个把图片转换成 icon 文件的工具，在本地直接转换，无需将图片上传到远程服务器。
 
-它使用 JavaScript 编写，适合在浏览器中使用。需要运行在 http(s) 协议中。不可以使用本地文件协议(file)。
+它使用 JavaScript 编写，适合在浏览器中使用。需要运行在 http(s) 协议中。
 
 [在线使用](https://icon.pixiv.download/)
 
@@ -22,9 +22,9 @@
 
 ## 参数说明
 
-`img2ico.convert()` 的参数是一个 Object：
+`img2ico.convert()` 是一个异步函数，它的参数是一个 Object：
 
-```
+```javascript
 {
   source: string | File
   size: SizeNumber[]
@@ -41,9 +41,13 @@ type SizeNumber = 16 | 32 | 48 | 96 | 128 | 256 | 512
 - `shape` 形状，分别为：正方形、圆形、圆角正方形
 - `bleed` 留白，仅当形状是圆角矩形时生效，可以使图片周围有一些留白。
 
-## 输出
+## 转换结果
 
 转换成功后，返回 icon 文件的 Blob 对象。
+
+```javascript
+const blob = await img2ico.convert(arg)
+```
 
 本工具不会下载文件。你可以使用 `URL.createObjectURL(blob)` 生成文件的 URL，自行下载。
 

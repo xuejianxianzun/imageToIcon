@@ -4,7 +4,7 @@
 
 This is a tool for converting image into icon files, which can be directly converted locally without uploading image to a remote server.
 
-It is written in JavaScript and is suitable for use in a browser. Need to run in http(s) protocol. The local file protocol (file) cannot be used.
+It is written in JavaScript and is suitable for use in a browser. Need to run in http(s) protocol. 
 
 [Online use](https://icon.pixiv.download/index-en.html)
 
@@ -22,9 +22,9 @@ It is written in JavaScript and is suitable for use in a browser. Need to run in
 
 ## Parameter Description
 
-The parameter of `img2ico.convert()` is an Object:
+`img2ico.convert()` is an asynchronous function, and its parameter is an Object:
 
-```
+```javascript
 {
   source: string | File
   size: SizeNumber[]
@@ -44,6 +44,10 @@ type SizeNumber = 16 | 32 | 48 | 96 | 128 | 256 | 512
 ## Output
 
 After the conversion is successful, the Blob object of the icon file is returned.
+
+```javascript
+const blob = await img2ico.convert(arg)
+```
 
 This tool will not download files. You can use `URL.createObjectURL(blob)` to generate the URL of the file and download it yourself.
 
